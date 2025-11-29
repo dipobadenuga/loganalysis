@@ -16,17 +16,5 @@ Tools Used
 - Apache access logs
 - macOS Terminal (for running the script when or if using a Mac)
 
-Repository Structure
-loganalysis/
-├── data/
-│ ├── sample_logs/
-│ │ └── apache_access.log
-│ └── simulated_logs/
-├── scripts/
-│ └── log_analysis.py
-├── results/
-│ ├── screenshots/
-│ └── findings.txt
-└── docs/
-├── project_overview.md
-└── data_description.md
+Side note: original repository was deleted, and I didn't know I could just upload the downloaded file. 
+Repository history can look a bit funky because of the copying and pasting. AI was used for a part of the .py file.
