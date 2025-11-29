@@ -17,3 +17,5 @@ You should include:
    - Screenshot of the script running with no errors  
 
 These screenshots help prove how the analysis was done and what results were found.
+
+Screenshots are not here at the moment. Will be added before presentation. 
