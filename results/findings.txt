@@ -1,0 +1,46 @@
+Basic Log Analysis Findings
+===========================
+
+1. Overview
+This project looked at Apache access logs and Windows Security logs to find signs of possible unauthorized access. The goal was to look for repeated failed logins, unusual IP addresses, and requests to restricted pages. I used Python, Event Viewer, and PowerShell to review the logs.
+
+2. Apache Access Log Findings
+The Apache log showed several patterns that could be suspicious.
+
+- Total unique IP addresses: [put number here]
+- Some normal traffic from local or internal IPs
+- Some IPs made many failed login attempts
+- Some IPs tried to access restricted pages like /admin or /config.php
+
+Examples:
+- 203.0.113.55: many failed login attempts (401 errors)
+- 198.51.100.23: tried /admin, /robots.txt, and /config.php (403 and 404 errors)
+
+These behaviors are often related to brute-force attempts or scanning activity.
+
+3. Windows Security Log Findings
+Using Event Viewer and PowerShell, I checked the Windows Security logs.
+
+- Number of failed logon events: [insert number]
+- Accounts with repeated failed logins: [list any usernames or leave blank if none]
+- Times of failed logins: [normal hours or unusual times]
+
+Patterns found:
+- Some failed login attempts happened multiple times in a row
+- Some attempts happened at times when no one should be logging in
+- No successful logins from unknown users
+
+4. Overall Conclusion
+Basic log analysis helped identify:
+- Suspicious IP addresses
+- Repeated failed login attempts
+- Attempts to access restricted areas
+- Possible scanning behavior
+
+This shows that even simple log review can help detect early signs of unauthorized access.
+
+5. Recommendations
+- Review accounts or IPs with repeated failed logins
+- Set alerts for multiple login failures in a short time
+- Check unusual IP addresses more closely
+- Keep logs organized and review them often for any strange activity
