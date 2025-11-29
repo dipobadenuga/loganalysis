@@ -17,7 +17,7 @@ Tools Used
 - macOS Terminal (for running the script when or if using a Mac)
 
 Repository Structure
-log-analysis-detect-unauthorized-access/
+loganalysis/
 ├── data/
 │ ├── sample_logs/
 │ │ └── apache_access.log
