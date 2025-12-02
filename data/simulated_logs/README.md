@@ -1,1 +1,0 @@
-Simulated logs for testing.
