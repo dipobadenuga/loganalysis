@@ -6,8 +6,6 @@ This project uses system log files to look for signs of unauthorized access. The
 ## Types of Logs Used
 The project uses two main types of log files:
 
----
-
 ## 1. Apache Web Server Access Logs
 Apache access logs record every request made to a web server. These logs are helpful for detecting unusual or suspicious behavior because they show what each user or IP address is doing.
 
@@ -31,10 +29,11 @@ For this project, the Apache logs come from:
 - public sample logs (LogHub Apache datasets)  
 - or a sample log file created manually to mimic real activity  
 
+The Apache access log used in this project was created for testing. It contains realistic entries such as failed logins and restricted page requests to help show suspicious patterns.
+ 
+
 The log file is saved inside:  
 `data/sample_logs/apache_access.log`
-
----
 
 ## 2. Windows Security Event Logs
 Windows security logs show activity happening on a Windows computer. These logs are viewed using Event Viewer or exported using PowerShell.
@@ -55,7 +54,6 @@ They help detect:
 
 These logs will be used to compare patterns with the Apache log analysis.
 
----
 
 ## Storage and Format
 - All logs are stored **locally** on my computer in plain text format.  
@@ -63,7 +61,6 @@ These logs will be used to compare patterns with the Apache log analysis.
 - Windows logs can be exported from Event Viewer and saved as text files.  
 - The Python script parses the Apache log file to find suspicious patterns.
 
----
 
 ## How the Logs Support the Project
 These logs help show real examples of unauthorized access attempts.  
@@ -72,5 +69,3 @@ By reading them with Python, the project can highlight:
 - which requests failed  
 - how many times login attempts were made  
 - what kind of pages attackers might try to access  
-
-This supports the project goal of using basic log analysis to detect intrusion.
