@@ -23,8 +23,6 @@ loganalysis/
 ├── data/
 │   ├── sample_logs/
 │   │   └── apache_access.log
-│   └── simulated_logs/
-│       └── README.md
 │
 ├── scripts/
 │   └── log_analysis.py
