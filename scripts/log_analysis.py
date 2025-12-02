@@ -1,19 +1,10 @@
-"""
-Basic log analysis script to detect possible unauthorized access.
-
-This script:
-- Reads an Apache style access log from a text file
-- Counts how many requests each IP address makes
-- Counts how many error or failed responses each IP has
-- Prints out IP addresses that look suspicious
-"""
 
 import os
 from collections import defaultdict
 
 # Path to the log file.
-# Change this if your file has a different name or location.
-LOG_FILE_PATH = os.path.join("..", "data", "sample_logs", "apache_access.log")
+LOG_FILE_PATH = os.path.join("data", "sample_logs", "apache_access.log")
+
 
 
 def parse_apache_line(line):
@@ -31,13 +22,13 @@ def parse_apache_line(line):
     """
     parts = line.split()
 
-    # Need at least 9 parts for a basic Apache format
+   
     if len(parts) < 9:
         return None
 
     ip = parts[0]
 
-    # Status code is usually the second value after the closing quote
+
     # Example: "GET /index.html HTTP/1.1" 200 1024
     try:
         status = int(parts[-2])
@@ -76,7 +67,7 @@ def analyze_log(file_path):
 
             total_requests[ip] += 1
 
-            # Treat status codes 400 and above as failures or errors
+            # treats status codes 400 and above as failures or errors
             if status >= 400:
                 failed_requests[ip] += 1
 
