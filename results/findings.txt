@@ -1,46 +1,37 @@
-Basic Log Analysis Findings
-===========================
+Findings
 
-1. Overview
-This project looked at Apache access logs and Windows Security logs to find signs of possible unauthorized access. The goal was to look for repeated failed logins, unusual IP addresses, and requests to restricted pages. I used Python, Event Viewer, and PowerShell to review the logs.
+The Python script processed the apache_access.log file from the data folder. The log contained a total of 4 unique IP addresses. Most of the IPs had normal behavior, but two of them showed patterns that may be related to unauthorized access.
 
-2. Apache Access Log Findings
-The Apache log showed several patterns that could be suspicious.
+IP address 203.0.113.55  
+  – Total requests: 9  
+  – Failed or error responses: 9  
+  – Failure ratio: 1.00  
+  This IP had a complete failure rate. Every request returned an error. This is a strong sign of a brute-force attempt or repeated login failure.
 
-- Total unique IP addresses: [put number here]
-- Some normal traffic from local or internal IPs
-- Some IPs made many failed login attempts
-- Some IPs tried to access restricted pages like /admin or /config.php
+IP address 198.51.100.23  
+  – Total requests: 5  
+  – Failed or error responses: 4  
+  – Failure ratio: 0.80  
+  This IP attempted multiple actions that failed. A high failure rate like this often means someone is probing pages, guessing credentials, or scanning for weaknesses.
 
-Examples:
-- 203.0.113.55: many failed login attempts (401 errors)
-- 198.51.100.23: tried /admin, /robots.txt, and /config.php (403 and 404 errors)
+These two IPs match the type of suspicious activity seen in real intrusion attempts, where attackers test login forms or restricted pages.
 
-These behaviors are often related to brute-force attempts or scanning activity.
+ Windows Security Log Findings
+Windows Security logs were reviewed through Event Viewer and PowerShell. Using the PowerShell command “Get-EventLog -LogName Security -Newest 20”, it showed me recent Security log entries. These logs included several Audit Success events related to Credential Manager reading entries, which is normal background activity.
 
-3. Windows Security Log Findings
-Using Event Viewer and PowerShell, I checked the Windows Security logs.
+From Event Viewer, multiple Event ID 4625 (failed logon attempt) (only one in screenshot) was also found. This indicates that at least one failed login attempt occurred on the system. A 4625 event is important because it shows an account failed to log in. While this may come from a user mistyping a password, it can also be a sign of a forced attempt.
 
-- Number of failed logon events: [insert number]
-- Accounts with repeated failed logins: [list any usernames or leave blank if none]
-- Times of failed logins: [normal hours or unusual times]
+Using both PowerShell output and Event Viewer logs shows that Windows Security logging is active and capturing authentication activity on the system.
 
-Patterns found:
-- Some failed login attempts happened multiple times in a row
-- Some attempts happened at times when no one should be logging in
-- No successful logins from unknown users
 
-4. Overall Conclusion
-Basic log analysis helped identify:
-- Suspicious IP addresses
-- Repeated failed login attempts
-- Attempts to access restricted areas
-- Possible scanning behavior
+Both the Apache and Windows logs show the value of basic log review. The Apache log revealed two IP addresses with high failure rates, which can point to possible brute-force attempts or scanning behavior. The Windows logs had a failed login event (4625) and normal credential activity, which shows that the system is recording authentication events correctly.
 
-This shows that even simple log review can help detect early signs of unauthorized access.
+These findings support the idea that even simple log analysis can help detect early signs of unauthorized access. Patterns in log files often reveal suspicious behavior before a serious issue happens.
 
-5. Recommendations
-- Review accounts or IPs with repeated failed logins
-- Set alerts for multiple login failures in a short time
-- Check unusual IP addresses more closely
-- Keep logs organized and review them often for any strange activity
+Recommendations:
+- Review any IP addresses that show many failed or error responses.  
+- Monitor Event Viewer regularly for 4625 failed login events.  
+- Set alerts or notifications for repeated login failures.  
+- Use stronger passwords and consider enabling account lockout rules.  
+- Keep access logs and security logs organized so they can be reviewed quickly when needed.
+
